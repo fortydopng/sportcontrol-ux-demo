@@ -28,7 +28,8 @@ h3{font-size:18px;margin:0 0 6px;font-weight:650}
 .card{background:#fff;border:1px solid #E3E6E5;border-radius:10px;padding:16px 20px}
 .card h2{font-size:19px;margin:0 0 6px}
 .card ul{margin:0;padding-left:20px}.card li{margin:6px 0}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:10px}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:10px}
+@media (max-width:1100px){.cards{grid-template-columns:repeat(2,1fr)}}
 .scard{display:flex;flex-direction:column;gap:3px;background:#fff;border:1px solid #E3E6E5;border-left:4px solid #2F5496;border-radius:10px;padding:14px 16px;text-decoration:none;color:#1F2A2E}
 .scard b{font-size:17px}.scard span:last-child{font-size:14px;color:#5B6B70}
 .slider{margin:14px 0 18px}

@@ -15,7 +15,7 @@
   <a class="brand" href="#about"><b>СпортКонтроль</b><span>как это будет выглядеть</span></a>
   <button class="burger" type="button" aria-label="Меню" aria-expanded="false"><span></span></button>
   <nav class="menu" id="menu">
-   <a href="#about">О программе</a><a href="#session">Сеанс</a><a href="#history">История</a><a href="#report">Отчёт тренеру</a><a href="#faq">Вопросы</a>
+   <a href="#about">О программе</a><a href="#start">Начало работы</a><a href="#session">Сеанс</a><a href="#history">История</a><a href="#report">Отчёт тренеру</a><a href="#faq">Вопросы</a>
   </nav>
  </div>
 </header>
@@ -38,14 +38,53 @@
   </ul></div>
  </div>
  <div class="cards">
-  <a class="scard" href="#session"><span class="num">Сценарий 1</span><b>Лабораторный сеанс</b><span>Бланк, ввод по столбцам, подтверждение</span></a>
-  <a class="scard" href="#history"><span class="num">Сценарий 2</span><b>История спортсмена</b><span>Динамика, нормы на дату, справочные обстоятельства</span></a>
-  <a class="scard" href="#report"><span class="num">Сценарий 3</span><b>Отчёт тренеру</b><span>Что показать, предпросмотр, выпуск</span></a>
+  <a class="scard" href="#start"><span class="num">Сценарий 1</span><b>Начало работы</b><span>Запуск, новый сеанс галочками, бланк на завтра</span></a>
+  <a class="scard" href="#session"><span class="num">Сценарий 2</span><b>Лабораторный сеанс</b><span>Бланк, ввод по столбцам, подтверждение</span></a>
+  <a class="scard" href="#history"><span class="num">Сценарий 3</span><b>История спортсмена</b><span>Динамика, нормы на дату, справочные обстоятельства</span></a>
+  <a class="scard" href="#report"><span class="num">Сценарий 4</span><b>Отчёт тренеру</b><span>Что показать, предпросмотр, выпуск</span></a>
  </div>
 </section>
 
+<section id="start" class="scen">
+ <h2><span class="num">Сценарий 1</span>Начало работы</h2>
+ <p class="lead">Вы спрашивали, как начинается работа. Вот весь путь: от запуска программы до напечатанного бланка на завтрашний забор — и что происходит на следующий день.</p>
+ <div class="slider" id="s0">
+ <div class="track"><ul class="slides"><li class="slide">
+ <figure><button class="open" type="button" data-src="img/start.png" data-cap="Экран «Сегодня» при запуске программы"><img src="img/start.png" alt="Экран «Сегодня» при запуске программы" loading="lazy"></button>
+ <figcaption>Программа открывается на экране «Сегодня». Никакого «Файл → открыть»: сеанс для вас — то же, что лист в Excel, и он всегда под рукой.</figcaption></figure>
+ <div class="zooms"><span>Крупнее:</span><button class="zoom" type="button" data-src="img/start_z1.png" data-cap="Экран «Сегодня» при запуске программы — Кнопки действий">Кнопки действий</button><button class="zoom" type="button" data-src="img/start_z2.png" data-cap="Экран «Сегодня» при запуске программы — Подсказка и последние сеансы">Подсказка и последние сеансы</button></div>
+ <details class="more"><summary>Подробнее</summary><p>Четыре кнопки — четыре дела: подготовить новый сеанс, продолжить начатый, открыть историю спортсмена, собрать отчёт тренеру. Ниже — последние сеансы; их можно открыть для просмотра и исправлений.</p><p>Если завтра забор крови, сеанс удобно подготовить сегодня: выбрать, кто придёт и какие показатели, и напечатать бланк. Завтра останется только перенести цифры.</p></details>
+</li><li class="slide">
+ <figure><button class="open" type="button" data-src="img/newsession.png" data-cap="Окно нового сеанса: дата, вид спорта, присутствующие, показатели"><img src="img/newsession.png" alt="Окно нового сеанса: дата, вид спорта, присутствующие, показатели" loading="lazy"></button>
+ <figcaption>«Новый сеанс» — один экран: дата, вид спорта, кто присутствует, какие показатели. Всё галочками, как вы и описали.</figcaption></figure>
+ <div class="zooms"><span>Крупнее:</span><button class="zoom" type="button" data-src="img/newsession_z1.png" data-cap="Окно нового сеанса: дата, вид спорта, присутствующие, показатели — Дата, вид спорта, группа">Дата, вид спорта, группа</button><button class="zoom" type="button" data-src="img/newsession_z2.png" data-cap="Окно нового сеанса: дата, вид спорта, присутствующие, показатели — Кто присутствует">Кто присутствует</button><button class="zoom" type="button" data-src="img/newsession_z3.png" data-cap="Окно нового сеанса: дата, вид спорта, присутствующие, показатели — Показатели на сегодня">Показатели на сегодня</button><button class="zoom" type="button" data-src="img/newsession_z4.png" data-cap="Окно нового сеанса: дата, вид спорта, присутствующие, показатели — Итог и кнопки">Итог и кнопки</button></div>
+ <details class="more"><summary>Подробнее</summary><p><b>Дата</b> ставится самому — прежняя не подставляется, чтобы не записать результаты не тем днём.</p><p><b>Вид спорта</b> только сужает список фамилий; это не обязательное поле. Фамилии и даты рождения уже в программе — вы отмечаете галочками, кто сейчас есть.</p><p><b>Показатели</b> берутся из сохранённой панели для этой группы; на сегодня любой можно снять или добавить. Порядок столбцов — тот, что потом будет на бланке и на экране.</p><p>Галочки ничего не записывают в базу: ни визита, ни анализа. Записи появятся, когда вы сохраните цифры.</p></details>
+</li><li class="slide">
+ <figure><button class="open" type="button" data-src="img/prepared.png" data-cap="Подготовленный сеанс без цифр, бланк напечатан"><img src="img/prepared.png" alt="Подготовленный сеанс без цифр, бланк напечатан" loading="lazy"></button>
+ <figcaption>Сеанс подготовлен: те же строки и столбцы, что будут на бланке. Цифр ещё нет — печатаете бланк и закрываете до завтра.</figcaption></figure>
+ <div class="zooms"><span>Крупнее:</span><button class="zoom" type="button" data-src="img/prepared_z1.png" data-cap="Подготовленный сеанс без цифр, бланк напечатан — Шапка и сообщение">Шапка и сообщение</button><button class="zoom" type="button" data-src="img/prepared_z2.png" data-cap="Подготовленный сеанс без цифр, бланк напечатан — Сетка, левая часть">Сетка, левая часть</button><button class="zoom" type="button" data-src="img/prepared_z3.png" data-cap="Подготовленный сеанс без цифр, бланк напечатан — Сетка, правая часть">Сетка, правая часть</button><button class="zoom" type="button" data-src="img/prepared_z4.png" data-cap="Подготовленный сеанс без цифр, бланк напечатан — Счётчики и кнопки">Счётчики и кнопки</button></div>
+ <details class="more"><summary>Подробнее</summary><p>«Печать бланка» печатает лист на этот состав: строки — присутствующие, столбцы — выбранные показатели, в том же порядке. У бланка есть номер экземпляра, чтобы потом не перепутать листы.</p><p>В базе пока ничего не создано — только состав сеанса на вашем компьютере. Если завтра кто-то не придёт или добавится, состав можно поправить до ввода цифр; на бумаге просто вычеркнуть или дописать от руки.</p></details>
+</li><li class="slide">
+ <figure><button class="open" type="button" data-src="img/nextday.png" data-cap="Экран «Сегодня» на следующий день: сеанс ждёт продолжения"><img src="img/nextday.png" alt="Экран «Сегодня» на следующий день: сеанс ждёт продолжения" loading="lazy"></button>
+ <figcaption>На следующий день программа сама предлагает продолжить подготовленный сеанс. Дальше — ввод по столбцам, как в сценарии «Лабораторный сеанс».</figcaption></figure>
+ <div class="zooms"><span>Крупнее:</span><button class="zoom" type="button" data-src="img/nextday_z1.png" data-cap="Экран «Сегодня» на следующий день: сеанс ждёт продолжения — Кнопки действий">Кнопки действий</button><button class="zoom" type="button" data-src="img/nextday_z2.png" data-cap="Экран «Сегодня» на следующий день: сеанс ждёт продолжения — Незавершённый сеанс">Незавершённый сеанс</button></div>
+ <details class="more"><summary>Подробнее</summary><p>Незавершённый сеанс виден сразу при запуске: дата, группа, состав, что уже сделано. «Продолжить» открывает экран ввода, и вы переносите цифры с бланка.</p><p>Если забор перенесли на другой день, дату в шапке сеанса можно поменять до ввода цифр; напечатанный бланк от этого не пропадает.</p></details>
+</li></ul></div>
+ <div class="ctrls"><button class="prev" type="button" aria-label="Предыдущий кадр">‹</button><div class="dots"><button type="button" aria-label="кадр 1"></button><button type="button" aria-label="кадр 2"></button><button type="button" aria-label="кадр 3"></button><button type="button" aria-label="кадр 4"></button></div><button class="next" type="button" aria-label="Следующий кадр">›</button></div>
+</div>
+ <div class="notice"><h3>Что вы заметите</h3><ul>
+  <li>Начало работы — три группы галочек на одном экране: вид спорта, кто присутствует, какие показатели. Без мастера из нескольких окон.</li>
+  <li>Сеанс можно подготовить накануне и напечатать бланк заранее; на следующий день программа сама предложит продолжить.</li>
+  <li>До сохранения цифр в базе ничего не появляется: галочки — это состав сеанса, а не записи.</li>
+ </ul></div>
+ <details class="faq"><summary>Обязательно ли выбирать вид спорта?</summary><div><p>Нет. Он только сужает список фамилий, чтобы не листать всех. Можно сразу выбрать группу или отмечать людей в полном списке.</p></div></details>
+ <details class="faq"><summary>Что, если в день забора список изменился?</summary><div><p>Откройте сеанс и поправьте галочки до ввода цифр: снятая строка ничего не записывает, добавленная появится в сетке. На бумаге человека можно вычеркнуть или дописать от руки. Если по строке уже сохранены цифры, программа спросит причину, прежде чем убрать её.</p></div></details>
+ <details class="faq"><summary>Можно ли готовить сеансы на несколько дней вперёд?</summary><div><p>Да. У каждого своя дата и свой бланк, и все незавершённые сеансы видны на экране «Сегодня».</p></div></details>
+ <details class="faq"><summary>Где потом искать прошлые сеансы?</summary><div><p>На том же экране «Сегодня»: список последних сеансов. Подтверждённые открываются для просмотра и исправлений, цифры в них не теряются.</p></div></details>
+</section>
+
 <section id="session" class="scen">
- <h2><span class="num">Сценарий 1</span>Лабораторный сеанс</h2>
+ <h2><span class="num">Сценарий 2</span>Лабораторный сеанс</h2>
  <p class="lead">Забор, пробоподготовка, анализ — всё как сейчас. Меняется только последний шаг: вместо Excel вы переносите цифры в СпортКонтроль, и дальше он берёт на себя остальное.</p>
  <div class="slider" id="s1">
  <div class="track"><ul class="slides"><li class="slide">
@@ -78,7 +117,7 @@
 </section>
 
 <section id="history" class="scen">
- <h2><span class="num">Сценарий 2</span>История спортсмена</h2>
+ <h2><span class="num">Сценарий 3</span>История спортсмена</h2>
  <p class="lead">Открыли спортсмена, выбрали показатель — и видите все годы сразу. Не нужно искать старые файлы по сезонам.</p>
  <div class="slider" id="s2">
  <div class="track"><ul class="slides"><li class="slide">
@@ -99,7 +138,7 @@
 </section>
 
 <section id="report" class="scen">
- <h2><span class="num">Сценарий 3</span>Отчёт тренеру</h2>
+ <h2><span class="num">Сценарий 4</span>Отчёт тренеру</h2>
  <p class="lead">Вы выбираете, что тренеру видеть, смотрите результат и выпускаете. Выпущенный отчёт больше не меняется.</p>
  <div class="slider" id="s3">
  <div class="track"><ul class="slides"><li class="slide">

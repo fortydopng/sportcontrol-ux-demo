@@ -359,8 +359,109 @@ def frame_report_preview():
 <div class="ft"><span>СпортКонтроль, предварительный просмотр</span><span>Страница 1 из 1</span></div></div></div>"""
     return window('Отчёт тренеру', ['Сегодня', 'Отчёты', 'Отчёт тренеру'], body, mode='Предварительный просмотр', tab_on='Предварительный просмотр', ribbon=ribbon_preview(), extra_tab='Предварительный просмотр', with_menu=False)
 
+
+START_CSS = """<style>
+.today{display:flex;align-items:baseline;gap:14px;margin:2px 0 12px}.today h1{font-size:20px;font-weight:700;margin:0}.today .who{margin-left:auto;font-size:13px;color:#555}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
+.tile{border:1px solid #ADADAD;background:#F0F0F0;padding:12px 14px;min-height:100px;display:flex;flex-direction:column;gap:4px}
+.tile b{font-size:16px}.tile span{font-size:13px;color:#333;line-height:1.25}
+.tile.pri{background:#2F5496;border-color:#1F3864;color:#fff}.tile.pri span{color:#E8EEF8}
+.tile.dis{color:#8A8A8A;border-color:#C9C9C9;background:#F7F7F7}.tile.dis span{color:#8A8A8A}
+.tile .bd{align-self:flex-start;font-size:12px;border:1px solid #1F3864;background:#fff;color:#1F3864;padding:0 7px;border-radius:9px;margin-top:3px}
+.tile.pri span.bd{color:#1F3864}
+table.lst td.w{white-space:normal}
+table.lst{border-collapse:collapse;width:100%;font-size:14px}
+table.lst th{text-align:left;font-weight:400;font-size:13px;color:#444;background:#F5F5F5;border-bottom:1px solid #C9C9C9;padding:4px 8px}
+table.lst td{border-bottom:1px solid #E1E1E1;padding:5px 8px;white-space:nowrap;vertical-align:middle}
+table.lst td.ac{text-align:right}table.lst tr.hi td{background:#FFF9E6}
+.col{display:flex;flex-direction:column;gap:8px}
+.chklist{border:1px solid #ABADB3;background:#fff;padding:4px 8px;display:flex;flex-direction:column}
+.chklist .chk{height:24px}.chklist.two{display:grid;grid-template-columns:1fr 1fr;gap:0 10px}
+.hint{font-size:12.5px;color:#555;line-height:1.3}
+.cnt2{font-size:13px;color:#222}
+</style>"""
+
+RECENT = [('26.09.2026', 'Группа А', 'Лабораторная базовая, версия 3', 13, 'подтверждён; отчёт тренеру выпущен 27.09.2026'),
+          ('19.09.2026', 'Группа Б', 'Лабораторная базовая, версия 3', 11, 'подтверждён'),
+          ('12.09.2026', 'Группа А', 'Лабораторная базовая, версия 3', 12, 'подтверждён; отчёт тренеру выпущен 13.09.2026'),
+          ('05.09.2026', 'Группа В', 'Лактат, версия 1', 8, 'подтверждён')]
+
+def frame_start(after=False):
+    if after:
+        day = 'суббота, 3 октября 2026'
+        tiles = """<div class="tiles"><div class="tile"><b>Новый сеанс</b><span>Подготовить ввод на дату: группа, кто присутствует, какие показатели</span></div>
+<div class="tile pri"><b>Продолжить сеанс</b><span>Открыть подготовленный сеанс и перенести цифры с бланка</span><span class="bd">1 незавершённый</span></div>
+<div class="tile"><b>История спортсмена</b><span>Все годы по одному человеку и показателю</span></div>
+<div class="tile"><b>Отчёт тренеру</b><span>Что показать, предварительный просмотр, выпуск</span></div></div>"""
+        unf = """<div class="sub"><div class="cap">Незавершённые сеансы</div><table class="lst"><tr><th>Дата сеанса</th><th>Группа</th><th>Панель</th><th>Состав</th><th>Состояние</th><th></th></tr>
+<tr class="hi"><td><b>03.10.2026</b> (сегодня)</td><td>Группа А</td><td>Лабораторная базовая, версия 3</td><td>13 спортсменов, 15 показателей</td><td class="w">подготовлен вчера; бланк напечатан (экземпляр 2026-10-03-01); цифр ещё нет</td><td class="ac"><span class="btn pri">Продолжить</span></td></tr></table></div>
+<div class="msg" style="margin-top:10px">Бланк заполнен? Нажмите «Продолжить» — откроется ввод по столбцам: те же строки и столбцы, что на бланке.</div>"""
+    else:
+        day = 'пятница, 2 октября 2026'
+        tiles = """<div class="tiles"><div class="tile pri"><b>Новый сеанс</b><span>Подготовить ввод на дату: группа, кто присутствует, какие показатели</span></div>
+<div class="tile dis"><b>Продолжить сеанс</b><span>Незавершённых сеансов нет</span></div>
+<div class="tile"><b>История спортсмена</b><span>Все годы по одному человеку и показателю</span></div>
+<div class="tile"><b>Отчёт тренеру</b><span>Что показать, предварительный просмотр, выпуск</span></div></div>"""
+        unf = """<div class="msg">Завтра забор крови? Подготовьте сеанс сейчас: «Новый сеанс» → кто придёт и какие показатели → «Печать бланка». Завтра останется только перенести цифры.</div>"""
+    rec = ''.join(f'<tr><td>{d}</td><td>{g}</td><td>{p}</td><td>{n}</td><td>{st}</td><td class="ac"><span class="btn">Открыть</span></td></tr>' for d, g, p, n, st in RECENT)
+    body = f"""{START_CSS}<div class="today"><h1>Сегодня — {day}</h1><div class="who">Вы вошли как: Врач</div></div>
+{tiles}{unf}
+<div class="sub" style="margin-top:12px"><div class="cap">Последние сеансы</div><table class="lst"><tr><th>Дата сеанса</th><th>Группа</th><th>Панель</th><th>Спортсменов</th><th>Состояние</th><th></th></tr>{rec}</table></div>
+<div class="foot"><span class="note">Подтверждённые сеансы открываются для просмотра и исправлений; цифры в них не теряются и не задваиваются.</span></div>"""
+    return window('Сегодня', ['Сегодня'], body, menu_on='Сегодня')
+
+SPORTS = [('Бокс', False), ('Шорт-трек', False), ('Лыжные гонки', True), ('Биатлон', False), ('Плавание', False)]
+PANEL_EXTRA = [('СРБ', 'мг/л'), ('Вит. D', 'нг/мл')]
+PRESENT = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13}
+
+def frame_newsession():
+    sports = ''.join(f'<span class="chk"><i class="{"on" if on else ""}"></i>{n}</span>' for n, on in SPORTS)
+    ath = ''.join(f'<span class="chk"><i class="{"on" if i in PRESENT else ""}"></i>Спортсмен {i:02d}</span>' for i in range(1, 21))
+    items = [(n, u, c != CALC) for c, (n, u, rng, d) in enumerate(IND) if c != CALC] + [(n, u, False) for n, u in PANEL_EXTRA]
+    ind = ''.join(f'<span class="chk"><i class="{"on" if on else ""}"></i>{n}, {u}</span>' for n, u, on in items)
+    body = f"""{START_CSS}<div class="today"><h1>Новый сеанс</h1><div class="who">Один экран, без лишних шагов</div></div>
+<div style="display:grid;grid-template-columns:330px 360px 1fr;gap:16px;align-items:start">
+<div class="col">
+ <div class="ctl"><label>Дата сеанса</label><div class="cb"><div class="tb" style="width:120px">03.10.2026</div><div class="dd">▼</div></div><div class="hint">завтра; дату нужно поставить самому — прежняя не подставляется</div></div>
+ <div class="ctl"><label>Вид обследования</label><div class="cb"><div class="tb" style="width:260px">Лабораторное обследование</div><div class="dd">▼</div></div></div>
+ <div class="ctl"><label>Исполнитель</label><div class="cb"><div class="tb" style="width:120px">Врач</div><div class="dd">▼</div></div></div>
+ <div class="ctl"><label>Вид спорта</label><div class="chklist">{sports}</div><div class="hint">Сужает список фамилий. Можно не выбирать — тогда список полный.</div></div>
+ <div class="ctl"><label>Группа</label><div class="cb"><div class="tb" style="width:260px">Группа А (лыжные гонки), 20 человек</div><div class="dd">▼</div></div></div>
+</div>
+<div class="col">
+ <div class="ctl"><label>Кто присутствует</label><div class="chklist">{ath}</div></div>
+ <div style="display:flex;gap:8px;align-items:center"><span class="btn">Отметить всех</span><span class="btn">Снять все</span><span class="cnt2" style="margin-left:auto"><b>13</b> из 20</span></div>
+ <div class="hint">Не пришёл — снимите галочку. Пустая строка ничего не записывает. Добавить человека можно и завтра.</div>
+</div>
+<div class="col">
+ <div class="ctl"><label>Панель показателей</label><div class="cb"><div class="tb" style="width:300px">Лабораторная базовая, версия 3</div><div class="dd">▼</div></div></div>
+ <div class="ctl"><label>Показатели на сегодня</label><div class="chklist two">{ind}</div></div>
+ <div style="display:flex;gap:8px;align-items:center"><span class="btn">Отметить все</span><span class="btn">Снять все</span><span class="cnt2" style="margin-left:auto"><b>15</b> из 17</span></div>
+ <div class="hint">Порядок столбцов — как в панели; он же будет на бланке и на экране ввода. Т/К программа считает сама.</div>
+</div></div>
+<div class="msg" style="margin-top:14px"><b>Сеанс на 03.10.2026:</b> Группа А, 13 спортсменов, 15 показателей — 195 клеток для ввода.<div style="flex:1"></div><span class="note">Галочки ничего не записывают в базу. Записи появятся, когда вы сохраните цифры.</span></div>
+<div class="foot"><div class="sp"></div><span class="btn">Отмена</span><span class="btn pri">Открыть сеанс</span></div>"""
+    return window('Новый сеанс', ['Сегодня', 'Новый сеанс'], body, menu_on='Ввод сеанса')
+
+def frame_prepared():
+    rows = ''
+    for r, name in enumerate(ROWS):
+        rows += f'<tr><td class="sel">{"▶" if r == 0 else ""}</td><td class="t">{name}</td>' + '<td></td>' * len(IND) + '<td class="chkc"><i></i></td><td class="t" style="color:#595959">подготовлена</td></tr>'
+    rows += '<tr><td class="sel">*</td><td class="t"></td>' + '<td></td>' * (len(IND) + 2) + '</tr>'
+    total = len(ROWS) * (len(IND) - 1)
+    body = session_hdr() + f"""<div class="msg"><b>Сеанс подготовлен.</b> Бланк напечатан сегодня в 16:40, экземпляр 2026-10-03-01. Завтра откройте этот сеанс через «Продолжить» и переносите цифры по столбцам.</div>
+<div class="sub"><div class="cap">Результаты сеанса</div><table class="ds">{ds_head()}{rows}</table>{recnav(1, 13)}</div>
+<div class="legend"><span>Строки и столбцы — те же, что на бланке. Пустая ячейка — записи нет. Подготовку отметите при вводе, по одному или всем сразу.</span></div>
+<div class="foot"><div class="cnt"><span><b>0</b> набрано из {total}</span><span><b>0</b> в базе</span><span><b>0</b> подготовок отмечено</span></div><div class="sp"></div>
+<span class="note">В базе пока ничего не создано: только состав сеанса на этом компьютере</span>
+<span class="btn">Изменить состав</span><span class="btn pri">Закрыть до завтра</span></div>"""
+    return window('Ввод сеанса', ['Сегодня', 'Ввод сеанса'], body, menu_on='Ввод сеанса')
+
 FRAMES = [('blank', frame_blank(), (1122, 794)), ('entry', frame_entry(), (1440, 960)), ('confirmed', frame_confirmed(), (1440, 960)),
-          ('history', frame_history(), (1440, 960)), ('report_params', frame_report_params(), (1440, 960)), ('report_preview', frame_report_preview(), (1440, 960))]
+          ('history', frame_history(), (1440, 960)), ('report_params', frame_report_params(), (1440, 960)), ('report_preview', frame_report_preview(), (1440, 960)),
+          ('start', frame_start(False), (1440, 960)), ('newsession', frame_newsession(), (1440, 960)), ('prepared', frame_prepared(), (1440, 960)), ('nextday', frame_start(True), (1440, 960))]
+import sys
+if len(sys.argv) > 1: FRAMES = [f for f in FRAMES if f[0] in sys.argv[1:]]  # python3 mock_access.py start newsession — только выбранные кадры
 
 with sync_playwright() as p:
     b = p.chromium.launch()
